@@ -262,7 +262,7 @@
 }
 
 /* Dark Mode Adjustments */
-:global(.dark) .input {
+[data-theme="dark"] .input {
   background: linear-gradient(
     180deg,
     rgba(26, 27, 33, 0.9) 0%,
@@ -281,7 +281,7 @@
   color: var(--text-primary-dark, #ffffff) !important;
 }
 
-:global(.dark) .input:focus {
+[data-theme="dark"] .input:focus {
   background: linear-gradient(
     180deg,
     rgba(30, 31, 38, 0.95) 0%,
@@ -300,34 +300,34 @@
     ) !important;
 }
 
-:global(.dark) .input::placeholder {
+[data-theme="dark"] .input::placeholder {
   color: var(--text-secondary-dark, #b4b5c0) !important;
 }
 
-:global(.dark) .outlined {
+[data-theme="dark"] .outlined {
   background: var(--card-background-dark, #1a1b21) !important;
   border-color: var(--primary-blue-dark, #4a8dff) !important;
 }
 
-:global(.dark) .outlined:focus {
+[data-theme="dark"] .outlined:focus {
   background: var(--neutral-gray-dark, #1e1f26) !important;
   border-color: var(--light-lavender-dark, #d4b5ff) !important;
 }
 
-:global(.dark) .minimal {
+[data-theme="dark"] .minimal {
   background: transparent !important;
   border-bottom-color: var(--primary-blue-dark, #4a8dff) !important;
 }
 
-:global(.dark) .minimal:focus {
+[data-theme="dark"] .minimal:focus {
   border-bottom-color: var(--light-lavender-dark, #d4b5ff) !important;
 }
 
-:global(.dark) .disabled {
+[data-theme="dark"] .disabled {
   background: rgba(255, 255, 255, 0.05) !important;
 }
 
-:global(.dark) .label {
+[data-theme="dark"] .label {
   color: var(--text-primary-dark, #ffffff) !important;
 }
 

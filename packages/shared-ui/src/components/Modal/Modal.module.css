@@ -472,13 +472,13 @@
 }
 
 /* Dark mode support */
-:global(.dark) .modal {
+[data-theme="dark"] .modal {
   background: var(--surface-primary);
   border-color: var(--border-primary);
   box-shadow: var(--shadow-xl);
 }
 
-:global(.dark) .header {
+[data-theme="dark"] .header {
   background: linear-gradient(
     135deg,
     var(--surface-primary) 0%,
@@ -487,49 +487,49 @@
   border-bottom-color: var(--border-primary);
 }
 
-:global(.dark) .footer {
+[data-theme="dark"] .footer {
   background: var(--surface-secondary);
   border-top-color: var(--border-primary);
 }
 
-:global(.dark) .title {
+[data-theme="dark"] .title {
   color: var(--text-primary);
 }
 
-:global(.dark) .subtitle {
+[data-theme="dark"] .subtitle {
   color: var(--text-secondary);
 }
 
-:global(.dark) .content {
+[data-theme="dark"] .content {
   color: var(--text-primary);
 }
 
-:global(.dark) .icon {
+[data-theme="dark"] .icon {
   background: var(--surface-tertiary);
   color: var(--color-primary);
 }
 
-:global(.dark) .closeButton {
+[data-theme="dark"] .closeButton {
   background: var(--surface-tertiary);
   color: var(--error);
 }
 
-:global(.dark) .closeButton:hover {
+[data-theme="dark"] .closeButton:hover {
   background: var(--error);
   color: white;
 }
 
-:global(.dark) .formInput,
-:global(.dark) .formTextarea,
-:global(.dark) .formSelect {
+[data-theme="dark"] .formInput,
+[data-theme="dark"] .formTextarea,
+[data-theme="dark"] .formSelect {
   background: var(--surface-primary);
   border-color: var(--border-primary);
   color: var(--text-primary);
 }
 
-:global(.dark) .formInput:focus,
-:global(.dark) .formTextarea:focus,
-:global(.dark) .formSelect:focus {
+[data-theme="dark"] .formInput:focus,
+[data-theme="dark"] .formTextarea:focus,
+[data-theme="dark"] .formSelect:focus {
   border-color: var(--color-primary);
 }
 

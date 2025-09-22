@@ -263,34 +263,34 @@
 }
 
 /* Dark mode */
-:global(.dark) .labelText {
+[data-theme="dark"] .labelText {
   color: var(--text-primary);
 }
 
-:global(.dark) .description {
+[data-theme="dark"] .description {
   color: var(--text-secondary);
 }
 
-:global(.dark) .checkboxIndicator {
+[data-theme="dark"] .checkboxIndicator {
   background: var(--card-background);
   border-color: var(--border-primary);
 }
 
-:global(.dark) .filled .checkboxIndicator {
+[data-theme="dark"] .filled .checkboxIndicator {
   background: var(--neutral-gray-dark);
 }
 
-:global(.dark) .switch .checkboxIndicator {
+[data-theme="dark"] .switch .checkboxIndicator {
   background: var(--neutral-gray-dark);
   border-color: var(--border-primary);
 }
 
-:global(.dark) .checkboxInput:checked + .checkboxLabel .checkboxIndicator {
+[data-theme="dark"] .checkboxInput:checked + .checkboxLabel .checkboxIndicator {
   background: var(--primary-blue-dark);
   border-color: var(--primary-blue-dark);
 }
 
-:global(.dark)
+[data-theme="dark"]
   .switch
   .checkboxInput:checked
   + .checkboxLabel
@@ -299,7 +299,7 @@
   border-color: var(--primary-blue-dark);
 }
 
-:global(.dark)
+[data-theme="dark"]
   .success
   .checkboxInput:checked
   + .checkboxLabel
@@ -308,7 +308,7 @@
   border-color: var(--bright-lime-green-dark);
 }
 
-:global(.dark)
+[data-theme="dark"]
   .warning
   .checkboxInput:checked
   + .checkboxLabel
@@ -317,7 +317,7 @@
   border-color: var(--golden-yellow-dark);
 }
 
-:global(.dark)
+[data-theme="dark"]
   .danger
   .checkboxInput:checked
   + .checkboxLabel
@@ -326,16 +326,16 @@
   border-color: var(--vibrant-coral-dark);
 }
 
-:global(.dark) .checkboxInput:hover + .checkboxLabel .checkboxIndicator {
+[data-theme="dark"] .checkboxInput:hover + .checkboxLabel .checkboxIndicator {
   border-color: var(--primary-blue-dark);
 }
 
-:global(.dark) .checkboxInput:focus + .checkboxLabel .checkboxIndicator {
+[data-theme="dark"] .checkboxInput:focus + .checkboxLabel .checkboxIndicator {
   border-color: var(--primary-blue-dark);
   box-shadow: 0 0 0 3px rgba(74, 141, 255, 0.1);
 }
 
-:global(.dark) .disabled .checkboxIndicator {
+[data-theme="dark"] .disabled .checkboxIndicator {
   background: var(--neutral-gray-dark);
   border-color: var(--border-primary);
 }
