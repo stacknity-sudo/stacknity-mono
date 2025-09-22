@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "@stacknity/shared-ui/styles";
+import "@stacknity/shared-ui";
 import { ThemeProvider } from "@stacknity/shared-theme/client";
 import ThemeToggleButton from "@/components/theme-toggle/theme-toggle-button";
 import { AuthProvider } from "../hooks/auth/auth-context";

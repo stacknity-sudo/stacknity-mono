@@ -1,3 +1,10 @@
+// Import CSS styles
+import "./components/button/Button.module.css";
+import "./components/input/Input.module.css";
+import "./components/card/Card.module.css";
+import "./components/checkbox/Checkbox.module.css";
+import "./components/Modal/Modal.module.css";
+
 // Re-export common React types
 export type { ComponentProps, ReactNode, ReactElement } from "react";
 
