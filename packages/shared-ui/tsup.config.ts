@@ -11,10 +11,5 @@ export default defineConfig({
   skipNodeModulesBundle: true,
   esbuildOptions(options) {
     options.conditions = ["module"];
-    // Handle CSS files correctly
-    options.loader = {
-      ...options.loader,
-      ".css": "text",
-    };
   },
 });
