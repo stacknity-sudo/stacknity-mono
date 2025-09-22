@@ -1,0 +1,63 @@
+{
+  "name": "@stacknity/shared-theme",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./client": {
+      "development": "./src/client.ts",
+      "types": "./dist/client.d.ts",
+      "import": "./dist/client.js",
+      "require": "./dist/client.cjs"
+    },
+    "./styles": {
+      "import": "./dist/client.css",
+      "require": "./dist/client.css"
+    }
+  },
+  "files": [
+    "dist/**"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss",
+    "./dist/client.css"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "theme",
+    "dark-mode",
+    "css-variables",
+    "react"
+  ],
+  "author": "Stacknity",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  },
+  "peerDependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}

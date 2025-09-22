@@ -1,0 +1,187 @@
+.features {
+  padding: 6rem 2rem;
+  background: var(--surface-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.featuresContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featuresHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.featuresTitle {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.02em;
+}
+
+.featuresSubtitle {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.featureCard {
+  background: var(--card-background);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--border-primary);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.featureCard:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--border-accent);
+}
+
+.featureCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--brand-primary),
+    var(--brand-secondary)
+  );
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.featureCard:hover::before {
+  transform: scaleX(1);
+}
+
+.featureIcon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: block;
+  position: relative;
+}
+
+.featureTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+}
+
+.featureDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.backgroundPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.03;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    var(--brand-primary) 1px,
+    transparent 0
+  );
+  background-size: 40px 40px;
+}
+
+/* Animation classes for stagger effect */
+.featureCard.animateIn {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideInUp 0.6s ease forwards;
+}
+
+.featureCard.animateIn:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.featureCard.animateIn:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.featureCard.animateIn:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.featureCard.animateIn:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.featureCard.animateIn:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.featureCard.animateIn:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .features {
+    padding: 4rem 1rem;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .featureCard {
+    padding: 1.5rem;
+  }
+
+  .featuresHeader {
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .features {
+    padding: 3rem 1rem;
+  }
+
+  .featureCard {
+    padding: 1.25rem;
+  }
+
+  .featureIcon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .featureTitle {
+    font-size: 1.3rem;
+  }
+}

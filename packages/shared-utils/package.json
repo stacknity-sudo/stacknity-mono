@@ -1,0 +1,41 @@
+{
+  "name": "@stacknity/shared-utils",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "echo 'lint shared-utils'",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "utils",
+    "utilities",
+    "api-client"
+  ],
+  "author": "Stacknity",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@tanstack/react-query": "^5.89.0",
+    "zod": "^4.1.9"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  }
+}

@@ -1,0 +1,50 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  border-radius: 9999px;
+  border: 1px solid var(--badge-border, rgba(0, 0, 0, 0.08));
+  background: var(--badge-bg, transparent);
+  color: var(--badge-fg, inherit);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  user-select: none;
+  vertical-align: middle;
+}
+
+.sm {
+  height: 20px;
+  font-size: 11.5px;
+}
+
+.md {
+  height: 22px;
+  font-size: 12.5px;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: currentColor;
+}
+
+.label {
+  min-width: 0;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,125 @@
+.picker {
+  position: relative;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 38px;
+  padding: 6px 8px;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  background: var(--surface-primary);
+  color: var(--text-primary);
+  cursor: text;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 999px;
+  background: var(--interactive-hover);
+  color: var(--text-primary);
+  font-size: 12px;
+}
+
+.chipAvatar {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--surface-secondary);
+}
+
+.chipRemove {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.input {
+  flex: 1;
+  min-width: 140px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: var(--surface-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  max-height: 260px;
+  overflow: hidden;
+}
+
+.searchRow {
+  padding: 6px;
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.searchInput {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border-primary);
+  border-radius: 6px;
+  background: var(--surface-secondary);
+  color: var(--text-primary);
+}
+
+.list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: var(--interactive-hover);
+}
+
+.itemAvatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--surface-secondary);
+}
+
+.itemText {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemLabel {
+  font-size: 14px;
+}
+
+.itemSub {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.check {
+  margin-left: auto;
+  opacity: 0.7;
+}

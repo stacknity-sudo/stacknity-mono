@@ -1,0 +1,4 @@
+These font files are provided for development purposes. Ensure you comply with the font license.
+
+Outfit is licensed under the SIL Open Font License (OFL) 1.1.
+https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL

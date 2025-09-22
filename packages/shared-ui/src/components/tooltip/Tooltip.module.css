@@ -1,0 +1,139 @@
+/* ===== TOOLTIP COMPONENT STYLES ===== */
+
+.tooltip {
+  position: fixed;
+  z-index: 10000;
+  padding: 0;
+  pointer-events: none;
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.content {
+  background: var(--surface-primary, #ffffff);
+  color: var(--text-primary, #1e293b);
+  border: 1px solid var(--border-primary, #e2e8f0);
+  border-radius: var(--border-radius-md, 8px);
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  max-width: 250px;
+  word-wrap: break-word;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(8px);
+  position: relative;
+}
+
+/* Dark mode tooltip styling */
+html.dark .content {
+  background: var(--surface-secondary, #1a1b21);
+  color: var(--text-primary-dark, #ffffff);
+  border-color: var(--border-primary, #374151);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--surface-primary, #ffffff);
+  border: 1px solid var(--border-primary, #e2e8f0);
+  transform: rotate(45deg);
+}
+
+html.dark .arrow {
+  background: var(--surface-secondary, #1a1b21);
+  border-color: var(--border-primary, #374151);
+}
+
+/* Arrow positioning for different placements */
+.top .arrow {
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  border-top: none;
+  border-left: none;
+}
+
+.bottom .arrow {
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  border-bottom: none;
+  border-right: none;
+}
+
+.left .arrow {
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  border-left: none;
+  border-bottom: none;
+}
+
+.right .arrow {
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  border-right: none;
+  border-top: none;
+}
+
+/* Enhanced styling for modern look */
+.content {
+  background: linear-gradient(
+    135deg,
+    var(--surface-primary, #ffffff) 0%,
+    var(--surface-secondary, #f8fafc) 100%
+  );
+  background-attachment: fixed;
+}
+
+html.dark .content {
+  background: linear-gradient(
+    135deg,
+    var(--surface-secondary, #1a1b21) 0%,
+    var(--surface-tertiary, #262730) 100%
+  );
+  background-attachment: fixed;
+}
+
+/* Smooth hover transitions */
+.tooltip {
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .tooltip {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .content {
+    border-width: 2px;
+    background: var(--background, #ffffff);
+    color: var(--foreground, #000000);
+  }
+
+  html.dark .content {
+    background: var(--dark-surface, #000000);
+    color: var(--text-primary-dark, #ffffff);
+  }
+}

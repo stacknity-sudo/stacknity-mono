@@ -1,0 +1,42 @@
+{
+  "name": "stacknity-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.17.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build:packages:only": "pnpm -r --filter @stacknity/shared-* --workspace-concurrency=1 run build",
+    "build:platform": "pnpm run build:packages:only && turbo build --filter=platform",
+    "build:tenant": "pnpm run build:packages:only && turbo build --filter=tenant",
+    "build": "pnpm run build:packages:only && turbo build --filter=platform --filter=tenant",
+    "dev": "npx turbo dev",
+    "dev:setup": "pnpm run build:packages:only && npx turbo dev",
+    "lint": "npx turbo lint",
+    "type-check": "npx turbo type-check",
+    "clean": "npx turbo clean",
+    "test": "npx turbo test",
+    "dev:platform": "npx turbo dev --filter=platform",
+    "dev:tenant": "npx turbo dev --filter=tenant",
+    "dev:platform:direct": "pnpm --filter platform run dev",
+    "dev:tenant:direct": "pnpm --filter tenant run dev",
+    "dev:packages": "pnpm -r --filter @stacknity/shared-* run dev",
+    "start:platform": "pnpm --filter platform run start",
+    "start:tenant": "pnpm --filter tenant run start",
+    "build:packages": "npx turbo build --filter=\"@stacknity/shared-*\"",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "npx turbo build --filter='@stacknity/*' && changeset publish"
+  },
+  "devDependencies": {
+    "@turbo/gen": "^2.5.6",
+    "turbo": "^2.5.6",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

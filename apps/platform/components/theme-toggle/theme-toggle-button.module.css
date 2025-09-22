@@ -1,0 +1,382 @@
+/**
+ * Ultra-Premium Floating Theme Toggle
+ * Advanced glassmorphism, 3D effects, and sophisticated animations
+ */
+
+.floatingToggle {
+  /* Strategic positioning with perfect spacing */
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+
+  /* Advanced multi-layer background system */
+  background: light-dark(
+    linear-gradient(
+      135deg,
+      oklch(99% 0.01 270 / 0.9) 0%,
+      oklch(97% 0.02 260 / 0.85) 50%,
+      oklch(95% 0.03 280 / 0.8) 100%
+    ),
+    linear-gradient(
+      135deg,
+      oklch(15% 0.04 270 / 0.95) 0%,
+      oklch(12% 0.05 260 / 0.9) 50%,
+      oklch(8% 0.06 280 / 0.85) 100%
+    )
+  );
+
+  /* Sophisticated border system */
+  border: 2px solid
+    light-dark(oklch(88% 0.04 270 / 0.5), oklch(30% 0.08 270 / 0.7));
+  border-radius: 1.5rem;
+
+  /* Premium glass morphism */
+  backdrop-filter: blur(24px) saturate(1.6) brightness(1.1);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6) brightness(1.1);
+
+  /* Advanced shadow system with multiple layers */
+  box-shadow: 
+    /* Ambient light */ 0 8px 32px -8px light-dark(oklch(25% 0.02
+            270 / 0.12), oklch(0% 0 0 / 0.4)),
+    /* Direct light */ 0 4px 16px -4px light-dark(oklch(25% 0.02 270 / 0.15), oklch(0%
+            0 0 / 0.5)),
+    /* Subtle rim light */ inset 0 1px 0
+      light-dark(oklch(100% 0 0 / 0.6), oklch(35% 0.04 270 / 0.4)),
+    /* Bottom shadow for depth */ inset 0 -1px 2px light-dark(oklch(90% 0.02 270 /
+            0.3), oklch(8% 0.05 270 / 0.6));
+
+  /* Advanced transitions with spring physics */
+  transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Performance optimizations */
+  transform: translateZ(0);
+  will-change: transform, box-shadow, filter;
+  contain: layout style paint;
+
+  /* Subtle breathing animation */
+  animation: floatingBreath 6s ease-in-out infinite;
+
+  /* Visual hierarchy */
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Internal premium button styling (fallback if package CSS classes not applied) */
+.premiumButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.125rem; /* 50px */
+  min-height: 3.125rem;
+  padding: 0.65rem 0.85rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  font: inherit;
+  color: light-dark(oklch(25% 0.08 270), oklch(95% 0.03 270));
+  background:
+    /* subtle top highlight */ linear-gradient(
+      180deg,
+      light-dark(oklch(100% 0 0 / 0.7), oklch(40% 0.05 270 / 0.25)) 0%,
+      transparent 60%
+    ),
+    /* animated sheen layer */
+      linear-gradient(
+        135deg,
+        light-dark(oklch(98% 0.01 270 / 0.9), oklch(22% 0.05 270 / 0.95)) 0%,
+        light-dark(oklch(96% 0.02 260 / 0.85), oklch(18% 0.06 260 / 0.9)) 35%,
+        light-dark(oklch(95% 0.03 280 / 0.8), oklch(16% 0.07 280 / 0.85)) 65%,
+        light-dark(oklch(97% 0.015 270 / 0.85), oklch(22% 0.05 270 / 0.95)) 100%
+      ),
+    /* base layer */
+      light-dark(oklch(99% 0.01 270 / 0.95), oklch(18% 0.06 270 / 0.98));
+  background-size: 100% 100%, 350% 350%, 100% 100%;
+  animation: premiumGradientShift 9s ease-in-out infinite;
+  box-shadow: 0 0 0 1px
+      light-dark(oklch(85% 0.05 270 / 0.5), oklch(40% 0.08 270 / 0.6)),
+    0 8px 28px -8px light-dark(oklch(30% 0.02 270 / 0.16), oklch(0% 0 0 / 0.55)),
+    0 4px 14px -4px light-dark(oklch(30% 0.02 270 / 0.22), oklch(0% 0 0 / 0.75)),
+    inset 0 2px 0 light-dark(oklch(100% 0 0 / 0.6), oklch(35% 0.04 270 / 0.45)),
+    inset 0 -2px 4px light-dark(oklch(88% 0.02 270 / 0.3), oklch(8% 0.05 270 /
+            0.75));
+  backdrop-filter: blur(18px) saturate(1.5) brightness(1.05);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5) brightness(1.05);
+  transition: transform 600ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background-position 400ms ease-out, filter 300ms ease;
+  overflow: hidden;
+  isolation: isolate;
+  transform: translateZ(0);
+  will-change: transform, box-shadow, background-position, filter;
+}
+
+@keyframes premiumGradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%, 0% 50%, center;
+  }
+  25% {
+    background-position: 25% 25%, 40% 40%, center;
+  }
+  50% {
+    background-position: 50% 50%, 60% 20%, center;
+  }
+  75% {
+    background-position: 75% 25%, 80% 60%, center;
+  }
+}
+
+.premiumButton:hover {
+  transform: translateY(-5px) scale(1.06) perspective(900px) rotateX(4deg);
+  box-shadow: 0 16px 48px -12px light-dark(oklch(30% 0.02 270 / 0.18), oklch(0%
+            0 0 / 0.55)),
+    0 8px 28px -8px light-dark(oklch(30% 0.02 270 / 0.22), oklch(0% 0 0 / 0.75)),
+    0 0 0 6px light-dark(oklch(70% 0.15 270 / 0.18), oklch(70% 0.22 270 / 0.22)),
+    inset 0 2px 0 light-dark(oklch(100% 0 0 / 0.75), oklch(45% 0.05 270 / 0.55)),
+    inset 0 -2px 5px light-dark(oklch(85% 0.02 270 / 0.38), oklch(6% 0.06 270 /
+            0.85));
+  background-position: 60% 40%, 70% 30%, center;
+  filter: brightness(1.05) saturate(1.15);
+}
+
+.premiumButton:active {
+  transform: translateY(-1px) scale(1.02);
+  transition-duration: 120ms;
+  box-shadow: 0 8px 28px -10px light-dark(oklch(30% 0.02 270 / 0.2), oklch(0% 0
+            0 / 0.55)),
+    0 4px 14px -6px light-dark(oklch(30% 0.02 270 / 0.25), oklch(0% 0 0 / 0.75)),
+    inset 0 2px 0 light-dark(oklch(100% 0 0 / 0.75), oklch(45% 0.05 270 / 0.55)),
+    inset 0 -2px 5px light-dark(oklch(85% 0.02 270 / 0.38), oklch(6% 0.06 270 /
+            0.85));
+}
+
+.premiumButton svg {
+  width: 1.25rem; /* 20px */
+  height: 1.25rem;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), filter 500ms ease,
+    opacity 400ms ease;
+  filter: drop-shadow(
+    0 2px 4px light-dark(oklch(0% 0 0 / 0.25), oklch(0% 0 0 / 0.6))
+  );
+  transform-origin: center;
+  opacity: 0.92;
+}
+
+.premiumButton:hover svg {
+  transform: rotate(14deg) scale(1.07);
+  filter: drop-shadow(
+      0 4px 8px light-dark(oklch(0% 0 0 / 0.28), oklch(0% 0 0 / 0.65))
+    )
+    brightness(1.08) saturate(1.1);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .premiumButton,
+  .premiumButton svg {
+    animation: none;
+    transition: none;
+    border-radius: 1.15rem;
+  }
+}
+
+/* Breathing animation for subtle life */
+@keyframes floatingBreath {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: translateY(-1px) scale(1.005);
+    filter: brightness(1.02);
+  }
+}
+
+/* Advanced hover effects */
+.floatingToggle:hover {
+  transform: translateY(-6px) scale(1.08) perspective(1000px) rotateX(5deg);
+
+  /* Enhanced shadows on hover */
+  box-shadow: 
+    /* Elevated ambient */ 0 16px 48px -12px light-dark(oklch(25%
+            0.02 270 / 0.18), oklch(0% 0 0 / 0.5)),
+    /* Stronger direct light */ 0 8px 24px -6px light-dark(oklch(25% 0.02 270 /
+            0.2), oklch(0% 0 0 / 0.6)),
+    /* Glow effect */ 0 0 0 6px
+      light-dark(oklch(70% 0.15 270 / 0.15), oklch(70% 0.2 270 / 0.2)),
+    /* Enhanced rim light */ inset 0 1px 0
+      light-dark(oklch(100% 0 0 / 0.8), oklch(40% 0.05 270 / 0.5)),
+    /* Deeper bottom shadow */ inset 0 -1px 3px light-dark(oklch(85% 0.03 270 /
+            0.4), oklch(5% 0.06 270 / 0.8));
+
+  /* Enhanced glass effect */
+  backdrop-filter: blur(28px) saturate(1.8) brightness(1.15);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8) brightness(1.15);
+
+  /* Disable breathing animation on hover */
+  animation: none;
+}
+
+/* Active/pressed state with realistic physics */
+.floatingToggle:active {
+  transform: translateY(-2px) scale(1.03) perspective(1000px) rotateX(-2deg);
+
+  box-shadow: 
+    /* Reduced shadows when pressed */ 0 6px 20px -6px light-dark(oklch(25%
+            0.02 270 / 0.2), oklch(0% 0 0 / 0.6)),
+    0 3px 12px -3px light-dark(oklch(25% 0.02 270 / 0.25), oklch(0% 0 0 / 0.7)),
+    /* Subtle pressed glow */ 0 0 0 3px
+      light-dark(oklch(70% 0.15 270 / 0.2), oklch(70% 0.2 270 / 0.25)),
+    /* Inset shadow for pressed effect */ inset 0 2px 6px -2px light-dark(oklch(80%
+            0.03 270 / 0.4), oklch(5% 0.08 270 / 0.8));
+
+  transition-duration: 150ms;
+  animation: none;
+}
+
+/* Pseudo-element for additional visual sophistication */
+.floatingToggle::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: light-dark(
+    conic-gradient(
+      from 45deg,
+      oklch(90% 0.05 270 / 0.3) 0deg,
+      oklch(85% 0.08 260 / 0.2) 90deg,
+      oklch(90% 0.05 280 / 0.3) 180deg,
+      oklch(85% 0.08 290 / 0.2) 270deg,
+      oklch(90% 0.05 270 / 0.3) 360deg
+    ),
+    conic-gradient(
+      from 45deg,
+      oklch(35% 0.08 270 / 0.4) 0deg,
+      oklch(30% 0.1 260 / 0.3) 90deg,
+      oklch(35% 0.08 280 / 0.4) 180deg,
+      oklch(30% 0.1 290 / 0.3) 270deg,
+      oklch(35% 0.08 270 / 0.4) 360deg
+    )
+  );
+  z-index: -1;
+  opacity: 0.6;
+  animation: borderRotate 8s linear infinite;
+}
+
+@keyframes borderRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Subtle pulse glow animation */
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 4px 12px -2px light-dark(oklch(25% 0.02 270 / 0.08), oklch(0%
+              0 0 / 0.3)),
+      0 8px 32px -8px light-dark(oklch(25% 0.02 270 / 0.06), oklch(0% 0 0 / 0.4)),
+      inset 0 1px 0 light-dark(oklch(100% 0 0 / 0.4), oklch(30% 0.02 270 / 0.3));
+  }
+  50% {
+    box-shadow: 0 4px 12px -2px light-dark(oklch(25% 0.02 270 / 0.1), oklch(0% 0
+              0 / 0.35)),
+      0 8px 32px -8px light-dark(oklch(25% 0.02 270 / 0.08), oklch(0% 0 0 / 0.45)),
+      0 0 0 2px
+        light-dark(oklch(65% 0.15 270 / 0.05), oklch(65% 0.15 270 / 0.1)),
+      inset 0 1px 0 light-dark(oklch(100% 0 0 / 0.5), oklch(30% 0.02 270 / 0.4));
+  }
+}
+
+/* Enhanced responsive design */
+@media (max-width: 768px) {
+  .floatingToggle {
+    bottom: 1rem;
+    right: 1rem;
+    border-radius: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .floatingToggle {
+    bottom: 0.75rem;
+    right: 0.75rem;
+    transform: scale(0.9);
+  }
+
+  .floatingToggle:hover {
+    transform: translateY(-2px) scale(0.95);
+  }
+}
+
+/* Dark theme specific enhancements */
+@media (prefers-color-scheme: dark) {
+  .floatingToggle {
+    /* Enhanced glow effect in dark mode */
+    box-shadow: 0 4px 12px -2px oklch(0% 0 0 / 0.4),
+      0 8px 32px -8px oklch(0% 0 0 / 0.5), 0 0 0 1px oklch(30% 0.04 270 / 0.6),
+      inset 0 1px 0 oklch(35% 0.03 270 / 0.4);
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .floatingToggle {
+    animation: none;
+    transition-duration: 150ms;
+  }
+
+  .floatingToggle:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .floatingToggle {
+    border-width: 2px;
+    border-color: currentColor;
+    background: light-dark(white, black);
+  }
+}
+
+/* Print styles - hide floating toggle */
+@media print {
+  .floatingToggle {
+    display: none;
+  }
+}
+
+/* Modern CSS feature queries */
+@supports (backdrop-filter: blur(20px)) {
+  .floatingToggle {
+    background: light-dark(
+      oklch(98% 0.005 270 / 0.75),
+      oklch(12% 0.02 270 / 0.8)
+    );
+  }
+}
+
+@supports not (backdrop-filter: blur(20px)) {
+  .floatingToggle {
+    background: light-dark(
+      oklch(97% 0.01 270 / 0.95),
+      oklch(15% 0.02 270 / 0.95)
+    );
+  }
+}
+
+/* Container queries for fine-tuned responsive behavior */
+@container (max-width: 400px) {
+  .floatingToggle {
+    bottom: 0.5rem;
+    right: 0.5rem;
+    transform: scale(0.85);
+  }
+}

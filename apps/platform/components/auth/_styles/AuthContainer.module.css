@@ -1,0 +1,1171 @@
+/* Auth Container - Flip Card Layout */
+.authContainer {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  background: var(--background);
+  font-family: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
+  perspective: 1000px;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+
+  /* Container queries support when available */
+  container-type: inline-size;
+}
+
+/* Card Container - Left Side */
+.cardContainer {
+  flex: 1;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 2rem);
+  background: var(--surface-primary);
+  position: relative;
+
+  /* Ensure content doesn't overflow */
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* Subtle pattern overlay */
+  background-image: var(--dotted-pattern-large);
+  background-size: var(--dotted-size-large);
+  background-position: 0 0;
+}
+
+/* 3D Flip Card */
+.card {
+  width: 100%;
+  max-width: clamp(
+    450px,
+    90vw,
+    640px
+  ); /* Much wider card to accommodate larger forms */
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 2;
+  /* Ensure card is centered */
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Card Sides */
+.cardSide {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  min-height: fit-content;
+  backface-visibility: hidden;
+  border-radius: clamp(16px, 2vw, 24px);
+  background: rgba(var(--surface-primary-rgb), 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-primary);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardFront {
+  transform: rotateY(0deg);
+}
+
+.cardBack {
+  transform: rotateY(180deg);
+}
+
+.formWrapper {
+  width: 100%;
+  max-width: clamp(
+    450px,
+    90vw,
+    600px
+  ); /* Much wider forms for better spacing */
+  padding: 0 clamp(0.5rem, 2vw, 1rem);
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Logo */
+.logoContainer {
+  text-align: center;
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
+}
+
+.logo {
+  height: auto;
+  transition: var(--transition-colors);
+}
+
+/* Welcome Section */
+.welcomeSection {
+  text-align: center;
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
+}
+
+.title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0 0 clamp(0.5rem, 2vw, 0.75rem);
+  letter-spacing: -0.025em;
+}
+
+.subtitle {
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Form Styles */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+}
+
+/* Name Row - Side by side layout for first/last name */
+.nameRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  width: 100%;
+}
+
+/* Ensure name row inputs are properly sized */
+.nameRow .inputGroup {
+  min-width: 0; /* Allow flex items to shrink below their minimum content size */
+}
+
+.nameRow .inputWrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inputIcon {
+  position: absolute;
+  left: clamp(12px, 2vw, 16px);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  font-size: clamp(16px, 2.5vw, 18px);
+  z-index: 2;
+  pointer-events: none;
+  transition: var(--transition-colors);
+}
+
+/* Adjust input padding when icon is present */
+.inputWrapper :global(.input) {
+  padding-left: clamp(40px, 8vw, 48px) !important;
+}
+
+/* Adjust padding for password inputs (has both left icon and right toggle) */
+.inputWrapper:has(.passwordToggle) :global(.input) {
+  padding-left: clamp(40px, 8vw, 48px) !important;
+  padding-right: clamp(40px, 8vw, 48px) !important;
+}
+
+/* Hover state for input icons */
+.inputWrapper:hover .inputIcon {
+  color: var(--text-secondary);
+}
+
+.passwordToggle {
+  position: absolute;
+  right: clamp(12px, 2vw, 16px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: clamp(4px, 1vw, 6px);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-colors);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(16px, 2.5vw, 18px);
+}
+
+.passwordToggle:hover {
+  color: var(--text-secondary);
+  background: var(--interactive-hover);
+}
+
+/* Match Indicator for Confirm Password */
+.matchIndicator {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--success);
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Password Strength Indicator */
+.passwordStrength {
+  margin-top: var(--spacing-2);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.strengthBar {
+  display: flex;
+  gap: 2px;
+  flex: 1;
+}
+
+.strengthSegment {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border-secondary);
+  flex: 1;
+  transition: var(--transition-colors);
+}
+
+.strengthSegment.active {
+  background: var(--brand-primary);
+}
+
+.strengthLabel {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-tertiary);
+  min-width: 80px;
+  text-align: right;
+}
+
+/* Form Options */
+.formOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: calc(var(--space-sm) * -1);
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox input {
+  display: none;
+}
+
+.checkmark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border-secondary);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-colors);
+  background: var(--surface-primary);
+}
+
+.checkbox input:checked + .checkmark {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+}
+
+.checkbox input:checked + .checkmark::after {
+  content: "✓";
+  color: white;
+  font-size: clamp(10px, 2vw, 12px);
+  font-weight: var(--font-weight-bold);
+}
+
+.forgotLink {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: var(--transition-colors);
+}
+
+.forgotLink:hover {
+  color: var(--hover-primary);
+  text-decoration: underline;
+}
+
+/* Terms Section */
+.termsSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  margin-top: var(--space-sm);
+}
+
+.termsText {
+  flex: 1;
+  line-height: 1.5;
+}
+
+.termsLink {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: var(--transition-colors);
+}
+
+.termsLink:hover {
+  color: var(--hover-primary);
+  text-decoration: underline;
+}
+
+.errorText {
+  color: var(--error);
+  font-size: var(--font-size-xs);
+  margin-top: var(--spacing-1);
+}
+
+/* Submit Button */
+.submitButton {
+  margin-top: clamp(0.5rem, 2vw, 0.75rem);
+  height: clamp(44px, 8vw, 48px); /* Better touch target on mobile */
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-lg);
+  transition: all 200ms ease;
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+  min-height: 44px; /* Ensure minimum touch target */
+}
+
+/* Flip Link Buttons */
+.flipLink {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: var(--transition-colors);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.flipLink::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--brand-primary);
+  transition: width 0.3s ease;
+}
+
+.flipLink:hover {
+  color: var(--hover-primary);
+}
+
+.flipLink:hover::before {
+  width: 100%;
+}
+
+/* Sign Up Section */
+.signupSection {
+  text-align: center;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border-primary);
+}
+
+.signupSection p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* Sign In Section */
+.signinSection {
+  text-align: center;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border-primary);
+}
+
+.signinSection p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* Right Panel - Brand Content */
+.rightPanel {
+  flex: 1;
+  background: linear-gradient(
+    135deg,
+    var(--brand-primary, #0066ff) 0%,
+    var(--brand-secondary, #00d4aa) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.brandContent {
+  max-width: clamp(300px, 80vw, 500px);
+  text-align: center;
+  z-index: 2;
+}
+
+/* Background Elements */
+.backgroundElements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.floatingElement {
+  position: absolute;
+  width: clamp(80px, 15vw, 120px);
+  height: clamp(80px, 15vw, 120px);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.floatingElement:nth-child(1) {
+  top: 20%;
+  left: 10%;
+}
+
+.floatingElement:nth-child(2) {
+  bottom: 30%;
+  right: 15%;
+  width: clamp(60px, 12vw, 80px);
+  height: clamp(60px, 12vw, 80px);
+}
+
+/* Hero Content */
+.heroContent {
+  margin-bottom: var(--space-2xl);
+}
+
+.heroIcon {
+  width: clamp(60px, 12vw, 80px);
+  height: clamp(60px, 12vw, 80px);
+  margin: 0 auto clamp(1rem, 3vw, 1.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.heroIcon svg {
+  width: clamp(24px, 5vw, 32px);
+  height: clamp(24px, 5vw, 32px);
+  color: white;
+}
+
+.heroTitle {
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  margin: 0 0 clamp(0.75rem, 2vw, 1rem);
+  text-align: center;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.heroDescription {
+  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Brand Image */
+.brandImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: clamp(1rem, 3vw, 1.5rem) 0;
+  border-radius: clamp(12px, 2vw, 16px);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.authImage {
+  width: 100%;
+  height: auto;
+  max-width: clamp(380px, 85vw, 550px);
+  object-fit: cover;
+  border-radius: clamp(8px, 1.5vw, 12px);
+  transition: transform 0.3s ease;
+}
+
+.authImage:hover {
+  transform: scale(1.02);
+}
+
+/* Feature List */
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  text-align: left;
+}
+
+.featureIcon {
+  width: clamp(40px, 8vw, 48px);
+  height: clamp(40px, 8vw, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.featureIcon svg {
+  width: clamp(16px, 3vw, 20px);
+  height: clamp(16px, 3vw, 20px);
+  color: white;
+}
+
+.feature h3 {
+  font-size: clamp(1.125rem, 3vw, 1.375rem);
+  font-weight: var(--font-weight-semibold);
+  color: white;
+  margin: 0 0 clamp(0.375rem, 1.5vw, 0.75rem);
+  line-height: 1.3;
+}
+
+.feature p {
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 2rem);
+  flex-wrap: wrap;
+}
+
+.stat {
+  text-align: center;
+  flex: 1;
+  min-width: clamp(80px, 15vw, 120px);
+}
+
+.statNumber {
+  display: block;
+  font-size: clamp(1.125rem, 3vw, 1.5rem);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  margin-bottom: clamp(0.25rem, 1vw, 0.5rem);
+  line-height: 1.1;
+}
+
+.statLabel {
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .authContainer {
+    perspective: 800px; /* Reduce perspective for tablets */
+  }
+
+  .card {
+    max-width: clamp(400px, 85vw, 540px);
+    min-height: clamp(450px, 70vh, 650px);
+  }
+
+  /* Keep side-by-side name layout on tablets but adjust spacing */
+  .nameRow {
+    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+  }
+}
+
+@media (max-width: 600px) {
+  /* Switch to vertical layout for name fields on smaller screens */
+  .nameRow {
+    grid-template-columns: 1fr;
+    gap: clamp(0.75rem, 2vw, 1rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .authContainer {
+    flex-direction: column;
+    perspective: none;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .cardContainer,
+  .rightPanel {
+    flex: none;
+    min-height: auto;
+  }
+
+  .cardContainer {
+    padding: clamp(1rem, 3vw, 1.5rem);
+    /* Center content vertically when in column layout */
+    min-height: clamp(
+      600px,
+      70vh,
+      800px
+    ); /* Ensure enough height for form content */
+    padding-top: clamp(1rem, 5vh, 2rem);
+    padding-bottom: clamp(1rem, 5vh, 2rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 0; /* Ensure form appears first */
+  }
+
+  .rightPanel {
+    min-height: clamp(200px, 30vh, 300px); /* More responsive height */
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    order: 1; /* Keep brand panel at bottom on mobile instead of top */
+  }
+
+  .card {
+    max-width: 100%;
+    min-height: clamp(500px, 70vh, 600px); /* Ensure minimum height on mobile */
+    margin: 0; /* Remove auto margin for mobile */
+    width: 100%;
+    transform-style: flat; /* Disable 3D on mobile for better compatibility */
+    perspective: none;
+    position: relative;
+    transform: none !important; /* Force remove any transforms */
+  }
+
+  .cardSide {
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: clamp(12px, 3vw, 20px); /* Smaller radius on mobile */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(500px, 70vh, 600px); /* Ensure content is visible */
+    position: relative; /* Change to relative positioning on mobile */
+    width: 100%;
+    height: auto; /* Auto height for better content flow */
+    backface-visibility: visible; /* Show both faces but control with display */
+    transform: none !important; /* Force remove all transforms on mobile */
+    transition: none; /* Remove transitions that might cause issues */
+  }
+
+  /* Use display to control visibility on mobile - more reliable than opacity */
+  .card:not(.flipped) .cardFront {
+    display: flex;
+    position: relative;
+    z-index: 2;
+  }
+
+  .card:not(.flipped) .cardBack {
+    display: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* When flipped, show the back card */
+  .card.flipped .cardFront {
+    display: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card.flipped .cardBack {
+    display: flex;
+    position: relative;
+    z-index: 2;
+  }
+
+  .nameRow {
+    grid-template-columns: 1fr;
+    gap: clamp(0.75rem, 2vw, 1rem);
+    width: 100%;
+  }
+
+  /* Ensure name row inputs take full width on mobile */
+  .nameRow .inputGroup,
+  .nameRow .inputWrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .stats {
+    gap: clamp(1rem, 4vw, 1.5rem);
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+  }
+
+  .featureList {
+    gap: clamp(0.75rem, 2vw, 1rem);
+  }
+
+  .brandImage {
+    margin: clamp(0.75rem, 2vw, 1rem) 0;
+  }
+
+  .authImage {
+    max-width: clamp(300px, 75vw, 420px);
+  }
+
+  .heroTitle {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .heroDescription {
+    font-size: clamp(0.875rem, 3vw, 1rem);
+  }
+
+  /* Improve form spacing on mobile */
+  .form {
+    gap: clamp(0.875rem, 3vw, 1.25rem);
+    width: 100%; /* Ensure form takes full width */
+    max-width: 100%; /* Prevent overflow */
+  }
+
+  .formWrapper {
+    width: 100%;
+    max-width: 100%; /* Allow full width on mobile */
+    padding: 0; /* Remove padding constraints */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+    overflow: hidden; /* Prevent horizontal overflow */
+  }
+
+  /* Ensure all form elements take full width */
+  .inputGroup,
+  .inputWrapper {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .welcomeSection {
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .authContainer {
+    /* Optimize for small mobile screens */
+    min-height: 100vh;
+    min-height: 100svh; /* Small viewport height for iOS Safari */
+  }
+
+  .cardContainer {
+    padding: clamp(0.75rem, 3vw, 1.25rem);
+    padding-top: clamp(1rem, 4vh, 1.5rem);
+    padding-bottom: clamp(1rem, 4vh, 1.5rem);
+    min-height: clamp(500px, 70vh, 700px); /* Ensure enough height */
+  }
+
+  .rightPanel {
+    padding: clamp(1rem, 4vw, 1.5rem);
+    min-height: clamp(150px, 25vh, 250px);
+  }
+
+  .cardSide {
+    padding: clamp(1rem, 4vw, 1.5rem);
+    border-radius: clamp(8px, 2vw, 16px);
+    min-height: clamp(450px, 65vh, 550px); /* Ensure visibility */
+    position: relative; /* Keep relative positioning */
+    height: auto; /* Auto height */
+    transform: none !important; /* Force remove transforms */
+  }
+
+  .card {
+    min-height: clamp(450px, 65vh, 550px); /* Consistent with cardSide */
+    width: 100%;
+    transform: none !important; /* Force remove transforms */
+  }
+
+  .stats {
+    flex-direction: column;
+    gap: clamp(0.75rem, 2vw, 1rem);
+    text-align: center; /* Center align stats on mobile */
+  }
+
+  .nameRow {
+    gap: clamp(0.5rem, 2vw, 0.75rem);
+  }
+
+  .form {
+    gap: clamp(0.75rem, 2.5vw, 1rem);
+  }
+
+  /* Ensure forms are always visible on mobile */
+  .cardSide .formWrapper {
+    overflow-y: auto;
+    max-height: 100%;
+    width: 100%;
+  }
+
+  /* Fix any potential layout issues */
+  .welcomeSection {
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  /* Improve touch targets on small screens */
+  .inputIcon {
+    left: clamp(8px, 2vw, 12px);
+    font-size: clamp(14px, 3vw, 16px);
+  }
+
+  .passwordToggle {
+    right: clamp(8px, 2vw, 12px);
+    padding: clamp(2px, 1vw, 4px);
+    font-size: clamp(14px, 3vw, 16px);
+  }
+
+  .inputWrapper :global(.input) {
+    padding-left: clamp(32px, 6vw, 40px) !important;
+  }
+
+  .inputWrapper:has(.passwordToggle) :global(.input) {
+    padding-left: clamp(32px, 6vw, 40px) !important;
+    padding-right: clamp(32px, 6vw, 40px) !important;
+  }
+
+  .heroTitle {
+    font-size: clamp(1.25rem, 4.5vw, 1.75rem);
+    line-height: 1.2;
+  }
+
+  .heroDescription {
+    font-size: clamp(0.8125rem, 2.5vw, 0.9375rem);
+    line-height: 1.4;
+  }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 360px) {
+  .card {
+    min-height: clamp(350px, 55vh, 450px);
+    transform: none !important; /* Force remove transforms */
+  }
+
+  .cardSide {
+    padding: clamp(0.875rem, 3vw, 1.25rem);
+    position: relative; /* Keep relative positioning */
+    transform: none !important; /* Force remove transforms */
+  }
+
+  .heroTitle {
+    font-size: clamp(1.125rem, 4vw, 1.5rem);
+  }
+}
+
+/* Container Queries for modern browsers */
+@container (max-width: 768px) {
+  .authContainer {
+    flex-direction: column;
+    perspective: none;
+  }
+
+  .cardContainer {
+    min-height: auto;
+  }
+
+  .rightPanel {
+    order: -1;
+    min-height: clamp(200px, 30vh, 300px);
+  }
+}
+
+@container (max-width: 480px) {
+  .card {
+    min-height: clamp(400px, 60vh, 500px);
+  }
+}
+
+/* Focus states and accessibility */
+.checkbox:focus-within .checkmark {
+  box-shadow: 0 0 0 2px var(--brand-primary-alpha);
+}
+
+.passwordToggle:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+.flipLink:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Animation for password strength */
+@keyframes strengthFill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.strengthSegment.active {
+  animation: strengthFill 0.3s ease-out;
+  transform-origin: left;
+}
+
+/* Card entrance animations */
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(-20deg) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0deg) translateY(0px);
+  }
+}
+
+.card {
+  animation: cardEntrance 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Flip animation improvements */
+.card.flipped .cardFront {
+  pointer-events: none;
+}
+
+.card:not(.flipped) .cardBack {
+  pointer-events: none;
+}
+
+/* ==========================================
+   Email Verification Styles
+   ========================================== */
+
+/* Verify Card - Works with shared-ui Card component */
+.verifyCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  max-width: 500px;
+  min-height: 400px;
+  justify-content: center;
+  width: 100%;
+}
+
+.verifyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  gap: 1.5rem;
+  max-width: 500px;
+  width: 100%;
+}
+
+.statusContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.statusIcon {
+  width: 40px;
+  height: 40px;
+  stroke-width: 2;
+}
+
+.statusIcon.spinning {
+  animation: spin 1s linear infinite;
+}
+
+.statusIcon.success {
+  color: var(--success-color, #22c55e);
+}
+
+.statusIcon.warning {
+  color: var(--warning-color, #f59e0b);
+}
+
+.statusIcon.error {
+  color: var(--error-color, #ef4444);
+}
+
+.statusIcon.neutral {
+  color: var(--primary-color, #3b82f6);
+}
+
+.verifyTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.verifyMessage {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+.emailDisplay {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: var(--surface-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-secondary);
+}
+
+.emailIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.emailText {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.verifyActions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.verifyFooter {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-secondary);
+  width: 100%;
+}
+
+.footerText {
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.supportLink {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.supportLink:hover {
+  color: var(--brand-primary-hover);
+  text-decoration: underline;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive adjustments for verification */
+@media (max-width: 768px) {
+  .verifyContainer {
+    padding: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .statusContainer {
+    width: 60px;
+    height: 60px;
+  }
+
+  .statusIcon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .verifyTitle {
+    font-size: 1.5rem;
+  }
+
+  .verifyMessage {
+    font-size: 1rem;
+  }
+}

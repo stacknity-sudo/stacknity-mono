@@ -1,0 +1,253 @@
+.notFoundContainer {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-outfit);
+}
+
+.notFoundBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.animationCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.notFoundContent {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 800px;
+  padding: var(--spacing-8);
+}
+
+.logoContainer {
+  margin-bottom: var(--spacing-6);
+}
+
+.logo {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}
+
+.errorCode {
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--brand-primary);
+  margin: 0;
+  margin-bottom: var(--spacing-6);
+  text-shadow: 0 4px 20px rgba(0, 102, 255, 0.3);
+  background: linear-gradient(
+    135deg,
+    var(--brand-primary),
+    var(--brand-secondary)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.errorMessage {
+  margin-bottom: var(--spacing-8);
+}
+
+.errorMessage h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0;
+  margin-bottom: var(--spacing-4);
+}
+
+.errorMessage p {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.actionButtons {
+  display: flex;
+  gap: var(--spacing-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-outfit);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-colors), var(--transition-shadow);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: var(--button-height-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btnPrimary {
+  background: linear-gradient(
+    135deg,
+    var(--brand-primary),
+    var(--brand-secondary)
+  );
+  color: var(--text-white);
+  box-shadow: var(--elevation-2);
+}
+
+.btnPrimary:hover {
+  box-shadow: var(--elevation-3);
+  transform: translateY(-2px);
+}
+
+.btnSecondary {
+  background: var(--surface-secondary);
+  color: var(--text-primary);
+  border: 2px solid var(--border-secondary);
+  box-shadow: var(--elevation-2);
+}
+
+.btnSecondary:hover {
+  background: var(--interactive-hover);
+  border-color: var(--brand-primary);
+  box-shadow: var(--elevation-3);
+  transform: translateY(-2px);
+}
+
+.floatingElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.floatingElement {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.element1 {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(
+    135deg,
+    var(--brand-primary),
+    var(--brand-accent)
+  );
+  top: 20%;
+  left: 10%;
+}
+
+.element2 {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(
+    135deg,
+    var(--brand-secondary),
+    var(--bright-lime-green)
+  );
+  top: 60%;
+  right: 15%;
+}
+
+.element3 {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(
+    135deg,
+    var(--brand-accent),
+    var(--golden-yellow)
+  );
+  bottom: 20%;
+  left: 20%;
+}
+
+@media (max-width: 768px) {
+  .notFoundContent {
+    padding: var(--spacing-6);
+    max-width: 90%;
+  }
+
+  .logoContainer {
+    margin-bottom: var(--spacing-4);
+  }
+
+  .logo {
+    max-width: 280px;
+    height: auto;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .floatingElement {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    max-width: 220px;
+  }
+
+  .notFoundContent {
+    max-width: 95%;
+  }
+}

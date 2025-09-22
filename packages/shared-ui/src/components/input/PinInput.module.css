@@ -1,0 +1,128 @@
+/* PIN Input Container */
+.pinContainer {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pinContainer.error .pinBox {
+  border-color: var(--error);
+  box-shadow: 0 0 0 2px var(--error) 20;
+}
+
+/* Individual PIN Box */
+.pinBox {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  background: var(--card-background);
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  outline: none;
+  transition: all 0.2s ease;
+  caret-color: var(--color-primary);
+}
+
+/* Focus State */
+.pinBox:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+  background: var(--surface-primary);
+}
+
+/* Filled State */
+.pinBox.filled {
+  border-color: var(--color-primary);
+  background: var(--color-primary) 08;
+  color: var(--color-primary);
+}
+
+/* Hover State */
+.pinBox:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  background: var(--surface-secondary);
+}
+
+/* Disabled State */
+.pinBox.disabled {
+  background: var(--color-muted);
+  border-color: var(--border-secondary);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+}
+
+/* Error State */
+.error .pinBox {
+  border-color: var(--error);
+}
+
+.error .pinBox:focus {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px var(--error) 20;
+}
+
+/* Loading/Busy State */
+.pinContainer.busy .pinBox {
+  background: var(--color-muted);
+  border-color: var(--border-secondary);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .pinBox {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.125rem;
+  }
+
+  .pinContainer {
+    gap: var(--space-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .pinBox {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1rem;
+  }
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+  .pinBox {
+    border-width: 3px;
+  }
+
+  .pinBox:focus {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .pinBox {
+    transition: none;
+  }
+}
+
+/* Dark mode adjustments */
+.dark .pinBox {
+  background: var(--surface-secondary);
+  border-color: var(--border-secondary);
+}
+
+.dark .pinBox:focus {
+  background: var(--surface-primary);
+}
+
+.dark .pinBox.filled {
+  background: var(--color-primary) 15;
+}

@@ -1,0 +1,709 @@
+/**
+ * Modern Theme Toggle CSS Module
+ * Using CSS custom properties, container queries, and modern CSS features
+ */
+
+/* ===== CSS Custom Properties (Design Tokens) ===== */
+.themeToggleButton {
+  /* Ultra-sophisticated color palette with depth */
+  --toggle-bg-primary: light-dark(
+    linear-gradient(
+      135deg,
+      oklch(99% 0.01 270 / 0.95) 0%,
+      oklch(97% 0.02 260 / 0.9) 50%,
+      oklch(95% 0.03 280 / 0.85) 100%
+    ),
+    linear-gradient(
+      135deg,
+      oklch(22% 0.04 270 / 0.98) 0%,
+      oklch(18% 0.05 260 / 0.95) 50%,
+      oklch(15% 0.06 280 / 0.9) 100%
+    )
+  );
+  --toggle-bg-secondary: light-dark(
+    oklch(100% 0 0 / 0.6),
+    oklch(30% 0.04 270 / 0.4)
+  );
+  --toggle-border-primary: light-dark(
+    oklch(85% 0.05 270 / 0.6),
+    oklch(40% 0.08 270 / 0.8)
+  );
+  --toggle-border-secondary: light-dark(
+    oklch(92% 0.02 270 / 0.3),
+    oklch(25% 0.05 270 / 0.5)
+  );
+  --toggle-text: light-dark(oklch(25% 0.08 270), oklch(95% 0.03 270));
+  --toggle-text-shadow: light-dark(
+    0 1px 2px oklch(100% 0 0 / 0.8),
+    0 1px 2px oklch(0% 0 0 / 0.6)
+  );
+  --toggle-hover-glow: light-dark(
+    0 0 20px oklch(70% 0.2 270 / 0.3),
+    0 0 25px oklch(70% 0.25 270 / 0.4)
+  );
+  --toggle-shadow-ambient: light-dark(
+    0 4px 20px -4px oklch(25% 0.02 270 / 0.12),
+    0 8px 32px -8px oklch(0% 0 0 / 0.6)
+  );
+  --toggle-shadow-direct: light-dark(
+    0 2px 8px -2px oklch(25% 0.02 270 / 0.2),
+    0 4px 12px -4px oklch(0% 0 0 / 0.8)
+  );
+  --toggle-shadow-hover: light-dark(
+    0 8px 32px -8px oklch(25% 0.02 270 / 0.18),
+    0 16px 48px -16px oklch(0% 0 0 / 0.7)
+  );
+  --toggle-focus-ring: oklch(65% 0.2 270 / 0.6);
+}
+
+/* ===== Ultra-Modern Base Toggle Button ===== */
+.themeToggleButton {
+  /* Advanced layout with perfect alignment */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  /* Sophisticated sizing system */
+  min-block-size: 4rem;
+  min-inline-size: 4rem;
+  padding-inline: clamp(1.125rem, 3.5vw, 1.5rem);
+  padding-block: 1rem;
+
+  /* Premium typography */
+  font-family: inherit;
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-shadow: var(--toggle-text-shadow);
+
+  /* Ultra-sophisticated multi-layer background */
+  background: 
+    /* Top highlight layer */ linear-gradient(
+      135deg,
+      light-dark(oklch(100% 0.01 270 / 0.8) 0%, oklch(30% 0.05 270 / 0.4) 100%)
+        0% 0% / 100% 40%,
+      light-dark(
+        oklch(95% 0.03 280 / 0.6) 0% 40% / 100% 30%,
+        oklch(15% 0.08 280 / 0.7) 0% 40% / 100% 30%
+      ),
+      /* Base gradient */ oklch(97% 0.02 270 / 0.95),
+      oklch(18% 0.06 270 / 0.98)
+    ),
+    /* Animated gradient overlay */
+      linear-gradient(
+        45deg,
+        light-dark(oklch(98% 0.01 270 / 0.9), oklch(20% 0.04 270 / 0.95)) 0%,
+        light-dark(oklch(96% 0.03 260 / 0.85), oklch(16% 0.06 260 / 0.9)) 25%,
+        light-dark(oklch(94% 0.04 280 / 0.8), oklch(14% 0.08 280 / 0.85)) 50%,
+        light-dark(oklch(96% 0.03 290 / 0.85), oklch(16% 0.06 290 / 0.9)) 75%,
+        light-dark(oklch(98% 0.01 270 / 0.9), oklch(20% 0.04 270 / 0.95)) 100%
+      );
+  background-size: 100% 100%, 400% 400%;
+  background-position: center, 0% 0%;
+  animation: gradientShift 8s ease-in-out infinite;
+
+  /* Advanced border system with gradient */
+  border: 2.5px solid transparent;
+  background-clip: padding-box;
+  border-radius: 1.375rem;
+  color: var(--toggle-text);
+
+  /* Multi-layer shadow system */
+  box-shadow: 
+    /* Outer glow */ 0 0 0 1px
+      light-dark(oklch(85% 0.05 270 / 0.4), oklch(40% 0.08 270 / 0.6)),
+    /* Main ambient shadow */ var(--toggle-shadow-ambient),
+    /* Direct shadow */ var(--toggle-shadow-direct),
+    /* Inner highlight */ inset 0 2px 0 var(--toggle-bg-secondary),
+    /* Inner depth */ inset 0 -2px 4px light-dark(oklch(88% 0.03 270 / 0.3), oklch(8%
+            0.05 270 / 0.7));
+
+  /* Premium glass effect */
+  backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
+
+  /* Advanced interactivity */
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  /* Ultra-smooth transitions */
+  transition: transform 600ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background-position 400ms ease-out, filter 300ms ease;
+
+  /* Complete reset */
+  border: none;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+
+  /* Performance optimizations */
+  transform: translateZ(0);
+  will-change: transform, box-shadow, filter, background-position;
+  contain: layout style paint;
+
+  /* Premium visual hierarchy */
+  isolation: isolate;
+  overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: center, 0% 50%;
+  }
+  25% {
+    background-position: center, 25% 25%;
+  }
+  50% {
+    background-position: center, 50% 0%;
+  }
+  75% {
+    background-position: center, 75% 25%;
+  }
+}
+
+/* Pseudo-elements for ultra-advanced visual effects */
+.themeToggleButton::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 45deg,
+    light-dark(oklch(88% 0.08 270 / 0.6) 0deg, oklch(45% 0.12 270 / 0.8) 0deg),
+    light-dark(oklch(85% 0.1 260 / 0.4) 90deg, oklch(40% 0.15 260 / 0.6) 90deg),
+    light-dark(
+      oklch(88% 0.08 280 / 0.6) 180deg,
+      oklch(45% 0.12 280 / 0.8) 180deg
+    ),
+    light-dark(
+      oklch(85% 0.1 290 / 0.4) 270deg,
+      oklch(40% 0.15 290 / 0.6) 270deg
+    ),
+    light-dark(
+      oklch(88% 0.08 270 / 0.6) 360deg,
+      oklch(45% 0.12 270 / 0.8) 360deg
+    )
+  );
+  z-index: -1;
+  opacity: 0.7;
+  animation: borderRotate 12s linear infinite;
+  filter: blur(0.5px);
+}
+
+.themeToggleButton::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: calc(1.375rem - 2px);
+  background: 
+    /* Inner highlight */ radial-gradient(
+      circle at 30% 20%,
+      light-dark(oklch(100% 0 0 / 0.9) 0%, oklch(40% 0.08 270 / 0.5) 0%) 0%,
+      transparent 50%
+    ),
+    /* Inner shadow */
+      radial-gradient(
+        circle at 70% 80%,
+        transparent 0%,
+        light-dark(oklch(92% 0.03 270 / 0.4) 50%, oklch(12% 0.08 270 / 0.7) 50%)
+          100%
+      );
+  pointer-events: none;
+  opacity: 0.8;
+  transition: opacity 400ms ease-out;
+}
+
+@keyframes borderRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== Ultra-Sophisticated Hover Effects ===== */
+.themeToggleButton:hover {
+  /* Ultra-dynamic background shift */
+  background-position: center, 100% 100%;
+
+  /* Dramatic transform with perfect physics */
+  transform: translateY(-4px) scale(1.06) perspective(1000px) rotateX(3deg)
+    rotateY(1deg);
+
+  /* Multi-layer sophisticated shadow system */
+  box-shadow: 
+    /* Outer intense glow */ 0 0 0 2px
+      light-dark(oklch(80% 0.12 270 / 0.5), oklch(50% 0.15 270 / 0.7)),
+    /* Elevated ambient */ 0 12px 40px -10px light-dark(oklch(25% 0.02 270 / 0.2), oklch(0%
+            0 0 / 0.6)),
+    /* Dramatic direct light */ 0 6px 20px -6px light-dark(oklch(25% 0.02 270 /
+            0.25), oklch(0% 0 0 / 0.8)),
+    /* Magical hover glow */ var(--toggle-hover-glow),
+    /* Enhanced inner highlight */ inset 0 3px 0
+      light-dark(oklch(100% 0 0 / 0.9), oklch(45% 0.08 270 / 0.7)),
+    /* Deeper inner shadow */ inset 0 -3px 6px light-dark(oklch(82% 0.04 270 /
+            0.4), oklch(5% 0.08 270 / 0.9));
+
+  /* Premium glass enhancement */
+  backdrop-filter: blur(28px) saturate(2) brightness(1.2);
+  -webkit-backdrop-filter: blur(28px) saturate(2) brightness(1.2);
+
+  /* Smooth filter enhancement */
+  filter: brightness(1.05) contrast(1.1) saturate(1.2);
+}
+
+.themeToggleButton:hover::before {
+  opacity: 1;
+  animation-duration: 8s;
+  filter: blur(1px);
+}
+
+.themeToggleButton:hover::after {
+  opacity: 1;
+  background: 
+    /* Intense inner highlight on hover */ radial-gradient(
+      circle at 25% 15%,
+      light-dark(oklch(100% 0 0 / 0.95) 0%, oklch(50% 0.12 270 / 0.8) 0%) 0%,
+      transparent 60%
+    ),
+    /* Enhanced inner shadow */
+      radial-gradient(
+        circle at 75% 85%,
+        transparent 0%,
+        light-dark(oklch(88% 0.05 270 / 0.6) 40%, oklch(8% 0.12 270 / 0.9) 40%)
+          100%
+      );
+}
+
+.themeToggleButton:active {
+  /* Realistic pressed physics */
+  transform: translateY(-1px) scale(1.02) perspective(1000px) rotateX(-2deg);
+
+  /* Pressed background state */
+  background-position: center, 200% 200%;
+
+  /* Pressed shadow system */
+  box-shadow: 
+    /* Reduced outer glow */ 0 0 0 1px
+      light-dark(oklch(75% 0.1 270 / 0.4), oklch(45% 0.12 270 / 0.6)),
+    /* Pressed shadows */ 0 4px 16px -4px oklch(25% 0.02 270 / 0.3),
+    0 2px 8px -2px oklch(25% 0.02 270 / 0.4),
+    /* Inset pressed effect */ inset 0 3px 8px -2px light-dark(oklch(75% 0.05
+            270 / 0.5), oklch(8% 0.1 270 / 0.8));
+
+  /* Quick pressed transition */
+  transition-duration: 120ms;
+  filter: brightness(0.95) contrast(1.05);
+}
+
+.themeToggleButton:active::before {
+  opacity: 0.5;
+  animation-play-state: paused;
+}
+
+.themeToggleButton:active::after {
+  opacity: 0.6;
+  background: radial-gradient(
+    circle at 50% 50%,
+    light-dark(oklch(85% 0.08 270 / 0.8) 0%, oklch(15% 0.15 270 / 0.9) 0%) 0%,
+    transparent 80%
+  );
+}
+
+/* ===== Enhanced Focus Management ===== */
+.themeToggleButton:focus-visible {
+  outline: 3px solid var(--toggle-focus-ring);
+  outline-offset: 4px;
+  box-shadow: var(--toggle-shadow-hover),
+    0 0 0 6px light-dark(oklch(65% 0.2 270 / 0.25), oklch(65% 0.25 270 / 0.35)),
+    var(--toggle-hover-glow);
+
+  /* Focus glow animation */
+  animation: focusPulse 2s ease-in-out infinite;
+}
+
+@keyframes focusPulse {
+  0%,
+  100% {
+    box-shadow: var(--toggle-shadow-hover),
+      0 0 0 6px
+        light-dark(oklch(65% 0.2 270 / 0.25), oklch(65% 0.25 270 / 0.35)),
+      var(--toggle-hover-glow);
+  }
+  50% {
+    box-shadow: var(--toggle-shadow-hover),
+      0 0 0 8px
+        light-dark(oklch(65% 0.2 270 / 0.15), oklch(65% 0.25 270 / 0.25)),
+      var(--toggle-hover-glow);
+  }
+}
+
+/* ===== Ultra-Fluid Icon Animations ===== */
+.themeToggleButton svg {
+  /* Ultra-smooth transitions with spring physics */
+  transition: transform 800ms cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    filter 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 400ms ease-out;
+  will-change: transform, filter, opacity;
+  transform-origin: center center;
+
+  /* Base sophisticated filter */
+  filter: drop-shadow(
+      0 2px 4px light-dark(oklch(25% 0.02 270 / 0.12), oklch(0% 0 0 / 0.4))
+    )
+    brightness(1.02) contrast(1.05);
+
+  /* Subtle idle animation */
+  animation: iconBreath 4s ease-in-out infinite;
+}
+
+@keyframes iconBreath {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(
+        0 2px 4px light-dark(oklch(25% 0.02 270 / 0.12), oklch(0% 0 0 / 0.4))
+      )
+      brightness(1.02) contrast(1.05);
+  }
+  50% {
+    transform: scale(1.02) rotate(1deg);
+    filter: drop-shadow(
+        0 3px 6px light-dark(oklch(25% 0.02 270 / 0.15), oklch(0% 0 0 / 0.5))
+      )
+      brightness(1.04) contrast(1.08);
+  }
+}
+
+.themeToggleButton:hover svg {
+  /* Dramatic hover transform with smooth spring */
+  transform: rotate(18deg) scale(1.25) perspective(500px) rotateY(10deg);
+
+  /* Enhanced sophisticated filter on hover */
+  filter: drop-shadow(
+      0 4px 12px light-dark(oklch(25% 0.02 270 / 0.2), oklch(0% 0 0 / 0.6))
+    )
+    brightness(1.15) contrast(1.2) saturate(1.3);
+
+  /* Stop idle animation on hover */
+  animation: none;
+}
+
+.themeToggleButton:active svg {
+  /* Quick responsive pressed state */
+  transform: rotate(-8deg) scale(0.9) perspective(500px) rotateY(-5deg);
+
+  /* Pressed filter state */
+  filter: drop-shadow(
+      0 1px 2px light-dark(oklch(25% 0.02 270 / 0.25), oklch(0% 0 0 / 0.7))
+    )
+    brightness(0.9) contrast(1.1);
+
+  transition-duration: 120ms;
+  animation: none;
+}
+
+/* ===== Theme-Specific Ultra-Sophisticated Icon Animations ===== */
+.themeToggleButton[data-theme="light"]:hover svg {
+  /* Sun icon: Energetic clockwise spin with glow */
+  transform: rotate(30deg) scale(1.3) perspective(600px) rotateX(5deg);
+
+  filter: drop-shadow(0 4px 16px oklch(50% 0.2 60 / 0.4))
+    drop-shadow(0 0 8px oklch(70% 0.3 60 / 0.6)) brightness(1.3) contrast(1.15)
+    saturate(1.4);
+
+  animation: sunGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes sunGlow {
+  0% {
+    filter: drop-shadow(0 4px 16px oklch(50% 0.2 60 / 0.4))
+      drop-shadow(0 0 8px oklch(70% 0.3 60 / 0.6)) brightness(1.3)
+      contrast(1.15) saturate(1.4);
+  }
+  100% {
+    filter: drop-shadow(0 4px 16px oklch(50% 0.2 60 / 0.6))
+      drop-shadow(0 0 12px oklch(70% 0.3 60 / 0.8)) brightness(1.4)
+      contrast(1.2) saturate(1.5);
+  }
+}
+
+.themeToggleButton[data-theme="dark"]:hover svg {
+  /* Moon icon: Mysterious counter-clockwise with ethereal glow */
+  transform: rotate(-25deg) scale(1.28) perspective(600px) rotateY(15deg);
+
+  filter: drop-shadow(0 4px 16px oklch(60% 0.2 240 / 0.5))
+    drop-shadow(0 0 12px oklch(70% 0.25 250 / 0.7)) brightness(1.25)
+    contrast(1.3) saturate(1.2);
+
+  animation: moonGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes moonGlow {
+  0% {
+    filter: drop-shadow(0 4px 16px oklch(60% 0.2 240 / 0.5))
+      drop-shadow(0 0 12px oklch(70% 0.25 250 / 0.7)) brightness(1.25)
+      contrast(1.3) saturate(1.2);
+  }
+  100% {
+    filter: drop-shadow(0 4px 16px oklch(60% 0.2 240 / 0.7))
+      drop-shadow(0 0 16px oklch(70% 0.25 250 / 0.9)) brightness(1.35)
+      contrast(1.4) saturate(1.3);
+  }
+}
+
+.themeToggleButton[data-theme="system"]:hover svg {
+  /* System icon: Steady tech-like pulse with digital glow */
+  transform: scale(1.22) perspective(500px) rotateX(8deg) rotateZ(2deg);
+
+  filter: drop-shadow(0 3px 12px oklch(55% 0.15 180 / 0.4))
+    drop-shadow(0 0 8px oklch(65% 0.2 180 / 0.6)) brightness(1.2) contrast(1.25)
+    saturate(1.4);
+
+  animation: systemPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes systemPulse {
+  0% {
+    transform: scale(1.22) perspective(500px) rotateX(8deg) rotateZ(2deg);
+  }
+  100% {
+    transform: scale(1.26) perspective(500px) rotateX(10deg) rotateZ(-2deg);
+  }
+}
+
+/* ===== Size Variants with Container Queries ===== */
+.sm {
+  min-block-size: 2rem;
+  min-inline-size: 2rem;
+  padding: 0.5rem;
+  border-radius: 0.625rem;
+  font-size: 0.8125rem;
+}
+
+.md {
+  min-block-size: 2.5rem;
+  min-inline-size: 2.5rem;
+  padding: 0.625rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.lg {
+  min-block-size: 3rem;
+  min-inline-size: 3rem;
+  padding: 0.75rem;
+  border-radius: 0.875rem;
+  font-size: 1rem;
+}
+
+/* ===== Layout Variants for Labels ===== */
+.right {
+  flex-direction: row;
+  text-align: start;
+}
+
+.left {
+  flex-direction: row-reverse;
+  text-align: end;
+}
+
+.top {
+  flex-direction: column-reverse;
+  text-align: center;
+}
+
+.bottom {
+  flex-direction: column;
+  text-align: center;
+}
+
+/* ===== Label Styles ===== */
+.label {
+  font-size: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+/* ===== Theme Select Dropdown ===== */
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='oklch(50%25 0.05 270)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 0.75rem;
+  padding-inline-end: 2.5rem;
+  min-inline-size: 8rem;
+}
+
+.select.sm {
+  padding-inline-start: 0.75rem;
+  padding-inline-end: 2rem;
+  min-inline-size: 6rem;
+}
+
+.select.md {
+  padding-inline-start: 1rem;
+  padding-inline-end: 2.5rem;
+  min-inline-size: 7rem;
+}
+
+.select.lg {
+  padding-inline-start: 1.25rem;
+  padding-inline-end: 3rem;
+  min-inline-size: 8rem;
+}
+
+/* ===== Status Indicator ===== */
+.themeStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: light-dark(oklch(97% 0.01 270 / 0.5), oklch(18% 0.02 270 / 0.8));
+  border: 1px solid
+    light-dark(oklch(88% 0.02 270 / 0.3), oklch(25% 0.03 270 / 0.6));
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: light-dark(oklch(35% 0.03 270), oklch(85% 0.02 270));
+  backdrop-filter: blur(8px);
+}
+
+.loading {
+  color: light-dark(oklch(55% 0.05 270 / 0.7), oklch(65% 0.05 270 / 0.8));
+}
+
+.loadingIndicator {
+  block-size: 0.5rem;
+  inline-size: 0.5rem;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    oklch(65% 0.15 270),
+    oklch(75% 0.2 290),
+    oklch(65% 0.15 270)
+  );
+  animation: spin 1.5s linear infinite;
+}
+
+.activeIndicator {
+  block-size: 0.5rem;
+  inline-size: 0.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, oklch(70% 0.15 270), oklch(60% 0.18 280));
+  box-shadow: 0 0 4px oklch(65% 0.15 270 / 0.4);
+}
+
+.resolvedTheme {
+  font-size: 0.75rem;
+  opacity: 0.75;
+  font-weight: 400;
+}
+
+/* ===== Modern Animations ===== */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+/* ===== Disabled State ===== */
+.themeToggleButton:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  transform: none;
+  filter: grayscale(0.3);
+}
+
+/* ===== Responsive Design with Container Queries ===== */
+@container (max-width: 300px) {
+  .themeToggleButton {
+    min-inline-size: 2rem;
+    padding-inline: 0.5rem;
+    font-size: 0.8125rem;
+  }
+
+  .label {
+    display: none;
+  }
+}
+
+/* ===== Accessibility Improvements ===== */
+@media (prefers-reduced-motion: reduce) {
+  .themeToggleButton,
+  .themeToggleButton svg,
+  .loadingIndicator {
+    transition: none;
+    animation: none;
+  }
+
+  .themeToggleButton:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .themeToggleButton {
+    border-width: 2px;
+    --toggle-border: currentColor;
+  }
+
+  .themeToggleButton:focus-visible {
+    outline-width: 3px;
+    outline-color: currentColor;
+  }
+}
+
+/* ===== Dark Theme Optimizations ===== */
+@media (prefers-color-scheme: dark) {
+  .themeToggleButton {
+    --toggle-shadow: 0 4px 16px -4px oklch(0% 0 0 / 0.4);
+    --toggle-shadow-hover: 0 8px 32px -8px oklch(0% 0 0 / 0.6);
+  }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  .themeToggleButton {
+    display: none;
+  }
+}
+
+/* ===== Modern Feature Queries ===== */
+@supports (backdrop-filter: blur(12px)) {
+  .themeToggleButton {
+    background: var(--toggle-bg);
+    backdrop-filter: blur(12px) saturate(1.2);
+  }
+}
+
+@supports not (backdrop-filter: blur(12px)) {
+  .themeToggleButton {
+    background: light-dark(oklch(98% 0 0), oklch(18% 0.01 270));
+  }
+}

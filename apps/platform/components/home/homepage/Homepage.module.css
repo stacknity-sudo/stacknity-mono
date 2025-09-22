@@ -1,0 +1,25 @@
+.homepage {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Global styles for the homepage */
+.homepage * {
+  box-sizing: border-box;
+}
+
+/* Ensure full-width sections */
+.homepage > section {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* Smooth scrolling for the entire page */
+.homepage {
+  scroll-behavior: smooth;
+}
